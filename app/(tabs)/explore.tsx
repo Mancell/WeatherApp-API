@@ -1,109 +1,175 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import React from "react";
+import { StyleSheet, ScrollView, View, Text, Linking } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import { Ionicons } from "@expo/vector-icons";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-
-export default function TabTwoScreen() {
+export default function ExploreScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="auto" />
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.title}>About This App</Text>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="information-circle" size={24} color="#4A90E2" />
+            <Text style={styles.cardTitle}>Weather App</Text>
+          </View>
+          <Text style={styles.cardText}>
+            This app provides real-time weather information and forecasts using
+            the OpenWeatherMap API. You can search for any city around the world
+            to get current weather conditions and hourly forecasts.
+          </Text>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="list" size={24} color="#4A90E2" />
+            <Text style={styles.cardTitle}>Features</Text>
+          </View>
+          <View style={styles.featureList}>
+            <View style={styles.featureItem}>
+              <Ionicons name="search" size={20} color="#666" />
+              <Text style={styles.featureText}>
+                Search for any city worldwide
+              </Text>
+            </View>
+            <View style={styles.featureItem}>
+              <Ionicons name="thermometer" size={20} color="#666" />
+              <Text style={styles.featureText}>
+                Current temperature and conditions
+              </Text>
+            </View>
+            <View style={styles.featureItem}>
+              <Ionicons name="time" size={20} color="#666" />
+              <Text style={styles.featureText}>
+                Hourly forecast for the next 24 hours
+              </Text>
+            </View>
+            <View style={styles.featureItem}>
+              <Ionicons name="water" size={20} color="#666" />
+              <Text style={styles.featureText}>
+                Humidity and wind information
+              </Text>
+            </View>
+            <View style={styles.featureItem}>
+              <Ionicons name="refresh" size={20} color="#666" />
+              <Text style={styles.featureText}>
+                Pull to refresh for latest data
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="code-slash" size={24} color="#4A90E2" />
+            <Text style={styles.cardTitle}>Technologies Used</Text>
+          </View>
+          <View style={styles.featureList}>
+            <View style={styles.featureItem}>
+              <Ionicons name="logo-react" size={20} color="#666" />
+              <Text style={styles.featureText}>React Native & Expo</Text>
+            </View>
+            <View style={styles.featureItem}>
+              <Ionicons name="cloud" size={20} color="#666" />
+              <Text style={styles.featureText}>OpenWeatherMap API</Text>
+            </View>
+            <View style={styles.featureItem}>
+              <Ionicons name="git-branch" size={20} color="#666" />
+              <Text style={styles.featureText}>Axios for API requests</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.card}>
+          <View style={styles.cardHeader}>
+            <Ionicons name="link" size={24} color="#4A90E2" />
+            <Text style={styles.cardTitle}>Resources</Text>
+          </View>
+          <Text
+            style={[styles.cardText, styles.link]}
+            onPress={() => Linking.openURL("https://openweathermap.org/")}
+          >
+            OpenWeatherMap Website
+          </Text>
+          <Text
+            style={[styles.cardText, styles.link]}
+            onPress={() => Linking.openURL("https://docs.expo.dev/")}
+          >
+            Expo Documentation
+          </Text>
+          <Text
+            style={[styles.cardText, styles.link]}
+            onPress={() => Linking.openURL("https://reactnative.dev/")}
+          >
+            React Native Documentation
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f9fa",
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  scrollContent: {
+    padding: 16,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginVertical: 20,
+    color: "#333",
+  },
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  cardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginLeft: 8,
+    color: "#333",
+  },
+  cardText: {
+    fontSize: 16,
+    color: "#666",
+    lineHeight: 24,
+  },
+  featureList: {
+    marginTop: 8,
+  },
+  featureItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  featureText: {
+    fontSize: 16,
+    color: "#666",
+    marginLeft: 12,
+  },
+  link: {
+    color: "#4A90E2",
+    textDecorationLine: "underline",
+    marginBottom: 8,
   },
 });
