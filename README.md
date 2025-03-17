@@ -2,6 +2,10 @@
 
 A React Native mobile application that provides real-time weather information and forecasts using the OpenWeatherMap API.
 
+![WhatsApp Görsel 2025-03-17 saat 22 26 18_d6ec35e1](https://github.com/user-attachments/assets/88b0f851-cd90-4219-a255-cc163d99daaa) ![Uploading WhatsApp Görsel 2025-03-17 saat 22.26.27_0f72e0b6.jpg…]()
+
+
+
 ## Features
 
 - Search for weather information by city name
